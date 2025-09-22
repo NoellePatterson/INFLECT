@@ -69,3 +69,21 @@ pip install -r requirements.txt
 ```
 
 ## Running the Code
+
+Once you have configured the repository on your local machine, you are ready to start running the code and generating results. 
+
+### 1. Upload user data
+
+Add data for your study river reach to the `data_inputs` folder within the repository. There are three total data needs:
+
+1. Add a **DEM** to the `data_inputs/dem` folder, in .TIF file format.
+   
+INFLECT has been developed and tested using a 1-m resolution DEM. It is highly recommended to use this resolution or similar with INFLECT. The DEM must cover the full extent of the thalweg and cross-section data inputs. 
+
+2. Add a **thalweg line** to `data_inputs/thalweg` folder, as a line type shapefile in .shp file format.
+
+The accuracy of the thalweg line is not critical to INFLECT performance, and a river centerline may be used instead. The length of river reach used in INFLECT is an ongoing research question and the user is encouraged to inspect results carefully when selecting a river segment and length. INFLECT has been developed with 1-5 km river reaches and this length is encouraged as a starting point. It is also crucial to avoid abrupt drops in the longitudinal profile of the reach, such as those caused by knickpoints or waterfalls, as these are not well-suited to the linear detrending performed in INFLECT.
+
+3. Add **cross-sections** to the `data_inputs/cross_sections` folder, as a line type shapefile in .shp file format.
+  
+Cross-sections can be automatically generated from the input thalweg. Cross-sections must be ordered from upstream to downstream. Cross-section width may be varied to suit the study site, but should cover the river corridor width of interest plus further extent up the valley walls if possible. It is okay if cross-sections overlap. Cross-section spacing can be determined by the user and should be spaced closely enough to capture the occurrence of both riffles and pools. Spacing of 10-50 meters have been tested successfully in INFLECT. Cross-sections do not need to be evenly spaced. 
