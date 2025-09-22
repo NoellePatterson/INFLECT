@@ -1,0 +1,7 @@
+
+data_inputs/
+data_outputs/
+my-virtualenv/
+*.pyc
+.vscode/
+__pycache__/
