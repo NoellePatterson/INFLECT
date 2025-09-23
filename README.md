@@ -1,10 +1,10 @@
 # INFLection-based Elevations from Channel Topography (INFLECT)
 
-INFLECT is a software tool used to identify persistent topographic features of river corridors, such as bankfull and flood terraces. INFLECT uses cross-sections derived from digital elevation models to identify abrupt changes in cross-section width, which are indicative of topographic features. Inputs to INFLECT are a DEM, a river thalweg/centerline, and a set of transects spanning the study reach. Outputs include a series of diagnostic figures described below, a set of elevations representing major topographic feature locations on the study reach, and a shapefile of topographic feature locations along the input transects. 
+INFLECT is a software tool used to identify persistent topographic features of river corridors, such as bankfull and flood terraces. INFLECT uses cross-sections derived from digital elevation models to identify inflections in cross-section width, which are indicative of topographic features. Inputs to INFLECT are a DEM, a river thalweg/centerline, and a set of transects spanning the study reach. Outputs include a series of diagnostic figures described below, a set of elevations representing major topographic feature locations on the study reach, and a shapefile of topographic feature locations along the input transects. 
 
 ## Software Configuration
 
-The following steps outline how to run the INFLECT tool and all dependencies required, for both Windows and Mac operating systems. 
+The following steps outline how to install the INFLECT tool and all dependencies required, for both Windows and Mac operating systems. 
 
 ### 1. Install Python 3
 
@@ -70,7 +70,7 @@ pip install -r requirements.txt
 
 ## Running the Code
 
-Once you have configured the repository on your local machine, you are ready to start running the code and generating results. 
+Once you have configured the repository on your local machine, you are ready to start running the code and generating outputs. 
 
 ### 1. Upload user data
 
@@ -87,3 +87,21 @@ The accuracy of the thalweg line is not critical to INFLECT performance, and a r
 3. Add **cross-sections** to the `data_inputs/cross_sections` folder, as a line type shapefile in .shp file format.
   
 Cross-sections can be automatically generated from the input thalweg. Cross-sections must be ordered from upstream to downstream. Cross-section width may be varied to suit the study site, but should cover the river corridor width of interest plus further extent up the valley walls if possible. It is okay if cross-sections overlap. Cross-section spacing can be determined by the user and should be spaced closely enough to capture the occurrence of both riffles and pools. Spacing of 10-50 meters have been tested successfully in INFLECT. Cross-sections do not need to be evenly spaced. 
+
+### 2. Specify reach name and input files
+
+The reach name and names of input files must be specified in the `main.py` file of the repository. The reach name is essential because all output file names are appended with the user-specified reach name. These changes are made in lines 27-38 of main.py and look like the following example:
+```
+reach_name = 'Eel_upstream'
+dem_fp = 'data_inputs/dem/Eel_dem.tif' # file in 'data_inputs/dem/...' folder
+thalweg_fp = 'data_inputs/thalweg/Eel_thLWEG.shp' # file in 'data_inputs/thalweg/...' folder
+cross_sections_fp = 'data_inputs/cross_sections/Eel_xs.shp' 
+```
+
+### 3. Review INFLECT algorithm parameters
+
+INFLECT algorithm parameters specify the details of calculating channel widths and calculating derivatives to determine major inflection points. Adjustable parameters are defined in main.py with default parameter values defined. A description of each parameter is included in the code. 
+
+### 4. Run analysis functions
+
+### 5. Run plotting functions
