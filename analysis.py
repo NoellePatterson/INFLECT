@@ -295,6 +295,7 @@ def calc_derivatives_aggregate(reach_name, d_interval, all_widths_df, slope_wind
         xs_xvals = get_x_vals(xsection, d_interval)
         dw = multipoint_slope(slope_window, xsection, xs_xvals)
         ddw = multipoint_slope(slope_window, dw, xs_xvals)
+        pd.DataFrame({'ddw':ddw}).to_csv('data_outputs/{}/second_order_roc/{}_roc.csv'.format(reach_name, x_index))
         ddw_ls.append(ddw)
 
     inflections_ls = []

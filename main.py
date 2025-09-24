@@ -21,10 +21,10 @@ from matplotlib import pyplot as plt
 from datetime import datetime
 import sys
 from analysis import calc_dwdh, calc_derivatives_aggregate
-from visualization import output_record, plot_bankfull_increments, plot_longitudinal_profile, multi_panel_plot, stacked_width_plots, transect_plot, plot_inflections
+from visualization import output_record, plot_bankfull_increments, plot_longitudinal_profile, transect_plot, plot_inflections
 from spatial_analysis import create_bankfull_pts
 
-reach_name = 'Mendocino' # Choose a reach name for output file identification
+reach_name = 'Mad_lower' # Choose a reach name for output file identification
 
 # Steps for bankfull analysis:
 # 1. Identify benchmark bankfull using inundation rasters (Analysis.py -> id_benchmark_bankfull)
@@ -33,19 +33,15 @@ reach_name = 'Mendocino' # Choose a reach name for output file identification
 # 4. Post-processing: plot results (Visualization.py -> plot_bankfull_increments, plot_longitudinal_bf)
 
 # Specify input data file paths in correct input folder directories
-dem_fp = 'data_inputs/dem/mendocino_central.tif' # file in 'data_inputs/dem/...' folder
-thalweg_fp = 'data_inputs/thalweg/07252025_Aerial_Mendocino_Thalweg_Trimmed.shp' # file in 'data_inputs/thalweg/...' folder
-cross_sections_fp = 'data_inputs/cross_sections/07252025_Aerial_Mendocino_Thalweg_Trimmed_XS_10.shp' # file in 'data_inputs/cross_sections/...' folder
+dem_fp = 'data_inputs/dem/dem.tif' # file in 'data_inputs/dem/...' folder
+thalweg_fp = 'data_inputs/thalweg/Thalweg.shp' # file in 'data_inputs/thalweg/...' folder
+cross_sections_fp = 'data_inputs/cross_sections/transects_lower_long.shp' # file in 'data_inputs/cross_sections/...' folder
 
 # Create output folders if needed
 if not os.path.exists('data_outputs/{}'.format(reach_name)):
     os.makedirs('data_outputs/{}'.format(reach_name))
-if not os.path.exists('data_outputs/{}/derivative_plots'.format(reach_name)):
-    os.makedirs('data_outputs/{}/derivative_plots'.format(reach_name))
 if not os.path.exists('data_outputs/{}/transect_plots'.format(reach_name)):
     os.makedirs('data_outputs/{}/transect_plots'.format(reach_name))
-if not os.path.exists('data_outputs/{}/first_order_roc'.format(reach_name)):
-    os.makedirs('data_outputs/{}/first_order_roc'.format(reach_name))
 if not os.path.exists('data_outputs/{}/second_order_roc'.format(reach_name)):
     os.makedirs('data_outputs/{}/second_order_roc'.format(reach_name))
 if not os.path.exists('data_outputs/{}/all_widths'.format(reach_name)):
@@ -67,20 +63,16 @@ upper_bound = 100 # Set upper vertical boundary for inflection id within cross-s
 spatial_plot_interval = 0.5 # interval for finding inflection elevation along cross_sections.
 width_calc_method = 'partial' # 'continuous' 'partial' - choose from either partial additive widths or continuous-only methods of width calculation
 
-# Uncomment functions to run
+# Uncomment Analysis functions to run
 
 # all_widths_df = calc_dwdh(reach_name, cross_sections, dem, plot_interval, d_interval, width_calc_method) # calc widths array for each cross-section
-# # print('Derivatives calc done!!')
 # calc_derivatives_aggregate(reach_name, d_interval, all_widths_df, slope_window)
 # output_record(reach_name, slope_window, d_interval, lower_bound, upper_bound, width_calc_method)
 
 # Plotting functions
-# plot_wd_and_xsections(reach_name, d_interval, plot_ylim, cross_sections, dem, plot_interval)
 plot_longitudinal_profile(reach_name, dem, cross_sections, plot_interval)
-# plot_bankfull_increments(reach_name, d_interval, plot_ylim)
+plot_bankfull_increments(reach_name, d_interval)
 transect_plot(cross_sections, dem, plot_interval, d_interval, reach_name)
-# stacked_width_plots(d_interval)
-# multi_panel_plot(reach_name, cross_sections, dem, plot_interval, d_interval, bankfull_boundary)
 plot_inflections(d_interval, reach_name)
 # Spatial analysis
 create_bankfull_pts(cross_sections, dem, thalweg, d_interval, spatial_plot_interval, reach_name)
