@@ -72,13 +72,15 @@ The steps in the dropdown section outline how to install the INFLECT tool and al
   ```
 </details>
 
+---  
+
 ## Running the Code
 
 Once you have configured the repository on your local machine, you are ready to start running the code and generating outputs. 
 
 ### 1. Upload user data
 
-Add data for your study river reach to the `data_inputs` folder within the repository. There are three total data needs:
+Add data for your study river reach to the `data_inputs` folder within the repository. There are three total geospatial data needs. **Make sure all geospatial files are in the same coordinate reference system!**
 
 1. Add a **DEM** to the `data_inputs/dem` folder, in .TIF file format.
    
@@ -108,4 +110,32 @@ INFLECT algorithm parameters specify the details of calculating channel widths a
 
 ### 4. Run analysis functions
 
+There are three analysis functions that perform the calculations necessary to identify major inflections indicating topographic features. All three functions are called from main.py and are listed below:
+
+```
+all_widths_df = calc_dwdh(reach_name, cross_sections, dem, plot_interval, d_interval, width_calc_method)
+```
+This function calculates incremental channel widths for each cross section (Fig. 1), which are stored as a set of arrays and returned from the function as the data frame `all_widths_df`. 
+
+```
+calc_derivatives_aggregate(reach_name, d_interval, all_widths_df, slope_window)
+```
+This function calculates the first and second derivatives of the width arrays from the function above (Fig. 1). The second derivative is the inflection curve of the channel width array. In this function, the average inflection curve is also calculated from the detrended width arrays (Fig. 1 step x) and the major inflections are identified (Fig. 1 step x). 
+
+```
+output_record(reach_name, slope_window, d_interval, lower_bound, upper_bound, width_calc_method)
+```
+Finally, a report is generated to accompany the analysis. This report includes all parameters used in the run, and the outputs generated.
+
 ### 5. Run plotting functions
+
+An assortment of plots can be generated to visualize the results of the INFLECT analysis. All plotting functions are called from ```main.py```. Plotting functions can be commented out to not run, which reduced the code runtime. 
+
+```
+plot_longitudinal_profile(reach_name, dem, cross_sections, plot_interval)
+```
+
+```
+
+```
+
