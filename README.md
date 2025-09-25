@@ -123,6 +123,14 @@ width_calc_method = 'partial' # 'continuous' 'partial' - choose from either part
 
 Additionally, parameters are included that set the specifications for the peak detection algorithm used to identify major inflection points from the aggregated inflection curve. The parameters are applied to both positive and negative inflection point algorithms. The parameters can be adjusted individually for each version of the peak detection algorithm directly in the ```Analysis.py``` file. 
 
+```python
+# peak detection parameters
+max_peak_ratio = 2 # The ratio of max peak:detected peak. Default val 2 means the detected peak must be one half the magnitude of the maximum peak. 
+distance_val = 5 # The minimum distance required between individual peaks
+width_val = 2 # The minumum width of an individual peak at the base
+prominence_val = 20 # optional, the prominence required for an individual peak
+```
+
 ### 4. Run analysis functions
 
 There are three analysis functions that perform the calculations necessary to identify major inflections indicating topographic features. All three functions are called from main.py and are listed below:

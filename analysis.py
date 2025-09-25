@@ -177,7 +177,7 @@ def calc_dwdh(reach_name, cross_sections, dem, plot_interval, d_interval, width_
     all_widths_df.to_csv('data_outputs/{}/all_widths.csv'.format(reach_name))
     return(all_widths_df)
 
-def calc_derivatives_aggregate(reach_name, d_interval, all_widths_df, slope_window):
+def calc_derivatives_aggregate(reach_name, d_interval, all_widths_df, slope_window, max_peak_ratio, distance_val, width_val, prominence_val):
     # Function for identifying top inflection point peaks
     def top_peaks_id(peaks_array, num_peaks):
         if len(peaks_array[0]) < num_peaks:
