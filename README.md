@@ -134,17 +134,20 @@ An assortment of plots can be generated to visualize the results of the INFLECT 
 ```
 plot_longitudinal_profile(reach_name, dem, cross_sections, plot_interval)
 ```
-
+![INFLECT outputs figure](images/Longitudinal_profile.png)
 ```
 plot_bankfull_increments(reach_name, d_interval)
 ```
+![INFLECT outputs figure](images/all_widths.jpeg)
 ```
 transect_plot(cross_sections, dem, plot_interval, d_interval, reach_name)
 ```
+![INFLECT outputs figure](images/bankfull_transect_10.jpeg)
 ```
 plot_inflections(d_interval, reach_name)
 ```
+![INFLECT outputs figure](images/inflections_all.jpeg)
 ```
 create_bankfull_pts(cross_sections, dem, thalweg, d_interval, spatial_plot_interval, reach_name)
 ```
-
+![INFLECT outputs figure](images/Leggett_fig.png)
