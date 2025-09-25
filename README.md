@@ -129,13 +129,22 @@ Finally, a report is generated to accompany the analysis. This report includes a
 
 ### 5. Run plotting functions
 
-An assortment of plots can be generated to visualize the results of the INFLECT analysis. All plotting functions are called from ```main.py```. Plotting functions can be commented out to not run, which reduced the code runtime. 
+An assortment of plots can be generated to visualize the results of the INFLECT analysis. All plotting functions are called from ```main.py```. Plotting functions can be commented out to not run, which reduces the code runtime. 
 
 ```
 plot_longitudinal_profile(reach_name, dem, cross_sections, plot_interval)
 ```
 
 ```
-
+plot_bankfull_increments(reach_name, d_interval)
+```
+```
+transect_plot(cross_sections, dem, plot_interval, d_interval, reach_name)
+```
+```
+plot_inflections(d_interval, reach_name)
+```
+```
+create_bankfull_pts(cross_sections, dem, thalweg, d_interval, spatial_plot_interval, reach_name)
 ```
 
