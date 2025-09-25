@@ -86,7 +86,7 @@ Add data for your study river reach to the `data_inputs` folder within the repos
 
 1. Add a **DEM** to the `data_inputs/dem` folder, in .TIF file format.
    
-INFLECT has been developed and tested using a 1-m resolution DEM. It is highly recommended to use this resolution or similar with INFLECT. The DEM must cover the full extent of the thalweg and cross-section data inputs. 
+INFLECT has been developed and tested using a 1-m resolution DEM. We recommended using a 1-10m DEM with or without bathymetry. The DEM must cover the full extent of the thalweg and cross-section data inputs. 
 
 2. Add a **thalweg line** to `data_inputs/thalweg` folder, as a line type shapefile in .shp file format.
 
