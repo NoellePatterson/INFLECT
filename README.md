@@ -189,4 +189,6 @@ create_bankfull_pts(cross_sections, dem, thalweg, d_interval, spatial_plot_inter
 ```
 <img src="images/Leggett_fig.png" width="500">
 
+## Contact
 
+For questions about the code, please email Noelle Patterson at noelle.patterson@usu.edu
