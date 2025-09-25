@@ -241,9 +241,9 @@ def calc_derivatives_aggregate(reach_name, d_interval, all_widths_df, slope_wind
     ddw = multipoint_slope(slope_window, dw, xvals_agg)
     # use inflection pt method to find top pos/neg peaks
     inflections_array_agg = ddw
-    peaks_pos_agg = find_peaks(inflections_array_agg, height=max(inflections_array_agg)/2, distance=5, width=2, prominence=15) # , prominence=20) # require peaks to be at least half the mag of max peak
+    peaks_pos_agg = find_peaks(inflections_array_agg, height=max(inflections_array_agg)/max_peak_ratio, distance=distance_val, width=width_val, prominence=prominence_val) # , prominence=20) # require peaks to be at least half the mag of max peak
     inflections_array_neg_agg = [-i for i in inflections_array_agg] # invert all signs to detect negative peaks
-    peaks_neg_agg = find_peaks(inflections_array_neg_agg, height=max(inflections_array_neg_agg)/5, distance=5, width=2, prominence=15) # prominence=20) # require peaks to be at least half the mag of max peak
+    peaks_neg_agg = find_peaks(inflections_array_neg_agg, height=max(inflections_array_neg_agg)/max_peak_ratio, distance=distance_val, width=width_val, prominence=prominence_val) # prominence=20) # require peaks to be at least half the mag of max peak
     # ID top 3 peaks in each category - positive
     max_pos_peak_agg = top_peaks_id(peaks_pos_agg, 3)
     # ID top 3 peaks in each category - negative
@@ -322,9 +322,9 @@ def calc_derivatives_aggregate(reach_name, d_interval, all_widths_df, slope_wind
     inflections_array = inflections_df.mean(axis=0, skipna=True)
 
     # identify top three peaks (across positive and negative)
-    peaks_pos = find_peaks(inflections_array, height=max(inflections_array)/2, distance=5, width=2) #, prominence=20) # require peaks to be at least half the mag of max peak
+    peaks_pos = find_peaks(inflections_array, height=max(inflections_array)/max_peak_ratio, distance=distance_val, width=width_val) #, prominence=prominence_val) # require peaks to be at least half the mag of max peak
     inflections_array_neg = [-i for i in inflections_array] # invert all signs to detect negative peaks
-    peaks_neg = find_peaks(inflections_array_neg, height=max(inflections_array_neg)/2, distance=5, width=2) #, prominence=20) # require peaks to be at least half the mag of max peak
+    peaks_neg = find_peaks(inflections_array_neg, height=max(inflections_array_neg)/max_peak_ratio, distance=distance_val, width=width_val) #, prominence=prominence_val) # require peaks to be at least half the mag of max peak
     # save peak locs for plotting along wd and cross_sections
     # ID top 3 peaks in each category - positive
     max_pos_peak = top_peaks_id(peaks_pos, 3)

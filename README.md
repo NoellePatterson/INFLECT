@@ -1,6 +1,8 @@
 # INFLection-based Elevations from Channel Topography (INFLECT)
 
-INFLECT is a software tool used to identify persistent topographic features of river corridors, such as bankfull and flood terraces. INFLECT uses cross-sections derived from digital elevation models to identify inflections in cross-section width, which are indicative of topographic features. Inputs to INFLECT are a DEM, a river thalweg/centerline, and a set of transects spanning the study reach. Outputs include a series of diagnostic figures described below, a set of elevations representing major topographic feature locations on the study reach, and a shapefile of topographic feature locations along the input transects. 
+INFLECT is a software tool used to identify persistent topographic features of river corridors, such as bankfull and flood terraces. INFLECT uses cross-sections derived from digital elevation models to identify inflections in cross-section width, which are indicative of topographic features. Inputs to INFLECT are a DEM, a river thalweg/centerline, and a set of transects spanning the study reach. Outputs include a series of diagnostic figures described below, a set of elevations representing major topographic feature locations on the study reach, and a shapefile of topographic feature locations along the input transects. The steps of the INFLECT process are summarized in the figure below:
+
+<img src="images/Methods_fig.png" width="800">
 
 ## Software Configuration
 
@@ -118,6 +120,8 @@ upper_bound = 100 # Set upper vertical boundary for inflection id within cross-s
 spatial_plot_interval = 0.5 # interval for finding inflection elevation along cross_sections.
 width_calc_method = 'partial' # 'continuous' 'partial' - choose from either partial additive widths or continuous-only methods of width calculation
 ```
+
+Additionally, parameters are included that set the specifications for the peak detection algorithm used to identify major inflection points from the aggregated inflection curve. The parameters are applied to both positive and negative inflection point algorithms. The parameters can be adjusted individually for each version of the peak detection algorithm directly in the ```Analysis.py``` file. 
 
 ### 4. Run analysis functions
 
